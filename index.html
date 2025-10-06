@@ -57,19 +57,70 @@
 <body>
 	<header>私のウェブサイト</header>
 	<div class="container">
-		<div class="card">
-			<h2>自己紹介</h2>
-			<p>こんにちは！Web開発が好きなエンジニアです。新しい技術やデザインに挑戦するのが趣味です。</p>
+			<div class="card">
+				<div style="text-align:center;">
+					<img src="https://randomuser.me/api/portraits/men/75.jpg" alt="プロフィール画像" class="profile-img">
+				</div>
+				<h2>自己紹介</h2>
+				<p>こんにちは！Web開発が好きなエンジニアです。新しい技術やデザインに挑戦するのが趣味です。</p>
 		</div>
-		<div class="card">
-			<h2>趣味</h2>
-			<ul>
-				<li>読書</li>
-				<li>プログラミング</li>
-				<li>旅行</li>
-				<li>カフェ巡り</li>
-			</ul>
-		</div>
-	</div>
-</body>
-</html>
+			<style>
+				body {
+					margin: 0;
+					font-family: 'Roboto', sans-serif;
+					background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+					color: #fff;
+					min-height: 100vh;
+				}
+				header {
+					background: rgba(0,0,0,0.3);
+					padding: 2rem 0 1rem 0;
+					text-align: center;
+					font-family: 'Montserrat', sans-serif;
+					font-size: 2.5rem;
+					letter-spacing: 2px;
+					font-weight: 700;
+				}
+				.container {
+					max-width: 700px;
+					margin: 2rem auto;
+					background: rgba(255,255,255,0.1);
+					border-radius: 16px;
+					box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+					padding: 2rem;
+				}
+				h2 {
+					font-family: 'Montserrat', sans-serif;
+					font-size: 1.5rem;
+					margin-top: 0;
+					color: #ffe082;
+				}
+				.card {
+					background: rgba(0,0,0,0.2);
+					border-radius: 12px;
+					padding: 1rem 1.5rem;
+					margin-bottom: 1.5rem;
+					box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+				}
+				.profile-img {
+					width: 120px;
+					height: 120px;
+					object-fit: cover;
+					border-radius: 50%;
+					border: 4px solid #ffe082;
+					box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+					margin-bottom: 1rem;
+				}
+				@media (max-width: 600px) {
+					.container {
+						padding: 1rem;
+					}
+					header {
+						font-size: 1.5rem;
+					}
+					.profile-img {
+						width: 80px;
+						height: 80px;
+					}
+				}
+			</style>
