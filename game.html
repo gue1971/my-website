@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>オセロゲーム</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #board { display: grid; grid-template: repeat(8, 40px) / repeat(8, 40px); margin: 20px auto; }
+        .cell { width: 40px; height: 40px; border: 1px solid #333; background: #008000; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .black { width: 30px; height: 30px; border-radius: 50%; background: #111; }
+        .white { width: 30px; height: 30px; border-radius: 50%; background: #fff; }
+        #info { margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>オセロゲーム</h1>
+    <div id="info"></div>
+    <div id="board"></div>
+    <button onclick="resetGame()">リセット</button>
+    <script>
+        const SIZE = 8;
+        let board = Array.from({length: SIZE}, () => Array(SIZE).fill(null));
+        let current = 'black';
+
+        function initBoard() {
+            for (let y = 0; y < SIZE; y++) {
+                for (let x = 0; x < SIZE; x++) {
+                    board[y][x] = null;
+                }
+            }
+            board[3][3] = 'white';
+            board[3][4] = 'black';
+            board[4][3] = 'black';
+            board[4][4] = 'white';
+        }
+
+        function drawBoard() {
+            const boardDiv = document.getElementById('board');
+            boardDiv.innerHTML = '';
+            for (let y = 0; y < SIZE; y++) {
+                for (let x = 0; x < SIZE; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.onclick = () => handleMove(x, y);
+                    if (board[y][x] === 'black') {
+                        const piece = document.createElement('div');
+                        piece.className = 'black';
+                        cell.appendChild(piece);
+                    } else if (board[y][x] === 'white') {
+                        const piece = document.createElement('div');
+                        piece.className = 'white';
+                        cell.appendChild(piece);
+                    }
+                    boardDiv.appendChild(cell);
+                }
+            }
+            updateInfo();
+        }
+
+        function updateInfo() {
+            document.getElementById('info').textContent = `現在のターン: ${current === 'black' ? '黒' : '白'}`;
+        }
+
+        function handleMove(x, y) {
+            if (board[y][x] !== null) return;
+            const flips = getFlips(x, y, current);
+            if (flips.length === 0) return;
+            board[y][x] = current;
+            for (const [fx, fy] of flips) {
+                board[fy][fx] = current;
+            }
+            current = current === 'black' ? 'white' : 'black';
+            drawBoard();
+        }
+
+        function getFlips(x, y, color) {
+            const directions = [
+                [0,1],[1,0],[0,-1],[-1,0],
+                [1,1],[1,-1],[-1,1],[-1,-1]
+            ];
+            let flips = [];
+            for (const [dx, dy] of directions) {
+                let nx = x + dx, ny = y + dy;
+                let temp = [];
+                while (nx >= 0 && nx < SIZE && ny >= 0 && ny < SIZE && board[ny][nx] && board[ny][nx] !== color) {
+                    temp.push([nx, ny]);
+                    nx += dx; ny += dy;
+                }
+                if (temp.length && nx >= 0 && nx < SIZE && ny >= 0 && ny < SIZE && board[ny][nx] === color) {
+                    flips = flips.concat(temp);
+                }
+            }
+            return flips;
+        }
+
+        function resetGame() {
+            initBoard();
+            current = 'black';
+            drawBoard();
+        }
+
+        // 初期化
+        resetGame();
+    </script>
+</body>
+</html>
