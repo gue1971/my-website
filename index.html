@@ -1,4 +1,75 @@
-私のウェブサイト
 
-自己紹介
-趣味は読書
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>私のウェブサイト</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+	<style>
+		body {
+			margin: 0;
+			font-family: 'Roboto', sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: #fff;
+			min-height: 100vh;
+		}
+		header {
+			background: rgba(0,0,0,0.3);
+			padding: 2rem 0 1rem 0;
+			text-align: center;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 2.5rem;
+			letter-spacing: 2px;
+			font-weight: 700;
+		}
+		.container {
+			max-width: 700px;
+			margin: 2rem auto;
+			background: rgba(255,255,255,0.1);
+			border-radius: 16px;
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			padding: 2rem;
+		}
+		h2 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 1.5rem;
+			margin-top: 0;
+			color: #ffe082;
+		}
+		.card {
+			background: rgba(0,0,0,0.2);
+			border-radius: 12px;
+			padding: 1rem 1.5rem;
+			margin-bottom: 1.5rem;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+		}
+		@media (max-width: 600px) {
+			.container {
+				padding: 1rem;
+			}
+			header {
+				font-size: 1.5rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>私のウェブサイト</header>
+	<div class="container">
+		<div class="card">
+			<h2>自己紹介</h2>
+			<p>こんにちは！Web開発が好きなエンジニアです。新しい技術やデザインに挑戦するのが趣味です。</p>
+		</div>
+		<div class="card">
+			<h2>趣味</h2>
+			<ul>
+				<li>読書</li>
+				<li>プログラミング</li>
+				<li>旅行</li>
+				<li>カフェ巡り</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
